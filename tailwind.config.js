@@ -5,6 +5,11 @@ module.exports = {
     extend: {
       
     },
+
+    fill: theme => ({
+      'green': theme('colors.green.500'),
+      'white': theme('colors.white'),
+    })
     
   },
   variants: {

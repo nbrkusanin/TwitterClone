@@ -4,6 +4,14 @@
       "id": 1,
       "title": "json-server",
       "author": "typicode"
+    },
+    {
+      "id": 2
+    },
+    {
+      "email": "nikola@msdfosd.com",
+      "password": "123456",
+      "id": 3
     }
   ],
   "comments": [
@@ -18,10 +26,99 @@
   },
   "users": [
     {
-      "username": "nikola",
+      "email": "nikola",
       "password": "123321",
-      "avatar": null,
       "id": 2
+    },
+    {
+      "id": 3
+    },
+    {
+      "id": 4
+    },
+    {
+      "id": 5
+    },
+    {
+      "id": 6
+    },
+    {
+      "id": 7
+    },
+    {
+      "email": "nikola@pass.com",
+      "password": "123456",
+      "id": 8
+    },
+    {
+      "email": "user55@bla.com",
+      "password": "1423321",
+      "id": 9
+    },
+    {
+      "email": "nikola@sdfsf.com",
+      "password": "158654",
+      "id": 10
+    },
+    {
+      "email": "nikola@test.com",
+      "password": "123321",
+      "id": 11
+    },
+    {
+      "email": "nikola@test2.com",
+      "password": "123456",
+      "id": 12
+    },
+    {
+      "email": "nikola5@test.com",
+      "password": "123456",
+      "id": 13
+    },
+    {
+      "email": "nikola6@test.com",
+      "password": "123456",
+      "id": 14
+    },
+    {
+      "email": "nikola@bla.com",
+      "password": "123456",
+      "id": 15
+    },
+    {
+      "email": "nikola55@bla.com",
+      "password": "123456",
+      "id": 16
+    },
+    {
+      "email": "nikola@gmao.com",
+      "password": "123456",
+      "id": 17
+    },
+    {
+      "email": "nikola18@test.com",
+      "password": "123456",
+      "id": 18
+    },
+    {
+      "email": "nikola19@gmail.com",
+      "password": "123456",
+      "id": 19
+    },
+    {
+      "email": "nikola20@gmail.com",
+      "password": "123456",
+      "id": 20
+    },
+    {
+      "email": "nikola30@gmail.com",
+      "password": "123456",
+      "id": 21
+    },
+    {
+      "email": "nikola@ssdfs.com",
+      "password": "123321",
+      "id": 22
     }
   ]
 }
