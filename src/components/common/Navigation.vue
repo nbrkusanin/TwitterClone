@@ -1,5 +1,5 @@
 <template>
-  <div class="font-sans antialiased" id="app">
+  <div class="font-sans antialiased sticky top-0" id="app">
     <nav class="flex items-center justify-between flex-wrap bg-green-500 p-6">
       <router-link to="/" class="flex items-center flex-no-shrink text-white mr-6">
         <svg class="fill-white h-8 w-8 mr-2" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"/></svg>
@@ -30,14 +30,31 @@
             </svg>
           </button>
         </div>
-        <div class="flex items-center justify-between ml-5">
-          <router-link to="/register" class="bg-white border hover:bg-green-500 hover:text-white hover:border-white text-green-500 font-bold py-2 px-4 rounded outline-none" type="button">
-            Register
-          </router-link>
-          <router-link to="/login" class="bg-white border hover:bg-green-500 hover:text-white hover:border-white text-green-500 font-bold py-2 px-4 rounded outline-none ml-2" type="button">
-            Login
-          </router-link>
-        </div>
+        <template v-if="loggedUser">
+          <div class="ml-5">
+            <div class="dropdown inline-block relative">
+              <button @click="showDropdown = !showDropdown" class="bg-white border hover:bg-green-500 hover:text-white hover:border-white text-green-500 font-bold py-2 px-4 rounded outline-none inline-flex items-center">
+                <span class="mr-1">{{ loggedUser.email }}</span>
+                <svg class="fill-green h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/> </svg>
+              </button>
+              <ul v-if="showDropdown" class="dropdown-menu absolute text-gray-700 pt-1 border border-green-500 rounded w-full">
+                <li class=""><router-link to="/" class="rounded-t bg-white hover:bg-green-100 py-2 px-4 block whitespace-no-wrap" href="#">Home</router-link></li>
+                <li class=""><router-link :to="{ path: `profile/${loggedUser.id}`}" class="bg-white hover:bg-green-100 py-2 px-4 block whitespace-no-wrap" href="#">Profile</router-link></li>
+                <li class=""><a @click="logout()" class="rounded-b bg-white hover:bg-green-100 py-2 px-4 block whitespace-no-wrap" href="javascript:void(0)">Logout</a></li>
+              </ul>
+            </div>
+          </div>
+        </template>
+        <template v-else>
+          <div class="flex items-center justify-between ml-5">
+            <router-link to="/register" class="bg-white border hover:bg-green-500 hover:text-white hover:border-white text-green-500 font-bold py-2 px-4 rounded outline-none" type="button">
+              Register
+            </router-link>
+            <router-link to="/login" class="bg-white border hover:bg-green-500 hover:text-white hover:border-white text-green-500 font-bold py-2 px-4 rounded outline-none ml-2" type="button">
+              Login
+            </router-link>
+          </div>
+        </template>
       </div>
     </nav>
   </div>
@@ -49,7 +66,8 @@
   export default {
     data () {
       return {
-        open: false
+        open: false,
+        showDropdown: false
       }
     },
 
@@ -59,13 +77,17 @@
 
     computed: {
       loggedUser () {
-        return this.$state.getters['authModule/loggedUser']
+        return this.$store.getters['authModule/loggedUser']
       }
     },
 
     methods: {
       toggle () {
         this.open = !this.open
+      },
+
+      logout () {
+        this.$store.dispatch('authModule/logoutUser')
       }
     }
   }

@@ -1,26 +1,105 @@
 {
   "posts": [
     {
-      "id": 1,
-      "title": "json-server",
-      "author": "typicode"
+      "userId": 23,
+      "title": "Testin Posts",
+      "author": "nikola11@gmail.com",
+      "post": "This is post testing bla bla",
+      "id": 4
     },
     {
-      "id": 2
+      "userId": 23,
+      "title": "Another Testing Posts",
+      "author": "nikola11@gmail.com",
+      "post": "Testing Posts Bla Bla bla",
+      "id": 5
     },
     {
-      "email": "nikola@msdfosd.com",
-      "password": "123456",
-      "id": 3
-    }
-  ],
-  "comments": [
+      "userId": 23,
+      "title": "New testing post",
+      "author": "nikola11@gmail.com",
+      "post": "sdfasdfasdfasdfasdfsdfsadfasdf",
+      "id": 6
+    },
     {
-      "id": 1,
-      "body": "some comment",
-      "postId": 1
+      "id": 7,
+      "userId": 23,
+      "author": "nikola11@gmail.com",
+      "title": "Nikola Post",
+      "post": "sadfasdfasf asdfasdfasd  asdfsdfsdfsdfasdf"
+    },
+    {
+      "userId": 23,
+      "title": "Something new",
+      "author": "nikola11@gmail.com",
+      "post": "this is new post",
+      "id": 8
+    },
+    {
+      "userId": 23,
+      "title": "testing posts",
+      "author": "nikola11@gmail.com",
+      "post": "New testing posts",
+      "id": 12
+    },
+    {
+      "userId": 23,
+      "title": "new ",
+      "author": "nikola11@gmail.com",
+      "post": "nsdfsdfsdfsdf",
+      "id": 13
+    },
+    {
+      "userId": 23,
+      "title": "asdfsadf",
+      "author": "nikola11@gmail.com",
+      "post": "asdfasfs",
+      "id": 14
+    },
+    {
+      "userId": 23,
+      "title": "nikola",
+      "author": "nikola11@gmail.com",
+      "post": "brkusanin",
+      "id": 15
+    },
+    {
+      "userId": 23,
+      "title": "nikola ",
+      "author": "nikola11@gmail.com",
+      "post": "brkusanin test",
+      "id": 16
+    },
+    {
+      "userId": 23,
+      "title": "nikola Brkusanin",
+      "author": "nikola11@gmail.com",
+      "post": "sdfasdfasdfsadfasdfsadfasdf",
+      "id": 17
+    },
+    {
+      "userId": 23,
+      "title": "nikola testin",
+      "author": "nikola11@gmail.com",
+      "post": "ninasdfsdfasdfasdf df asdf asdfasd ",
+      "id": 18
+    },
+    {
+      "id": 19,
+      "userId": 23,
+      "author": "nikola11@gmail.com",
+      "title": "sdgsdfgsdfg",
+      "post": "sdgfdfgsdfgsdf"
+    },
+    {
+      "id": 20,
+      "userId": 23,
+      "author": "nikola11@gmail.com",
+      "title": "fasdfasdfasdf",
+      "post": "asdfasdfasdfsad"
     }
   ],
+  "comments": [],
   "profile": {
     "name": "typicode"
   },
@@ -119,6 +198,16 @@
       "email": "nikola@ssdfs.com",
       "password": "123321",
       "id": 22
+    },
+    {
+      "email": "nikola11@gmail.com",
+      "password": "123456",
+      "id": 23
+    },
+    {
+      "email": "nikola11@gmail.com",
+      "password": "123456",
+      "id": 24
     }
   ]
 }

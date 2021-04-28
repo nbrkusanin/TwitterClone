@@ -9,13 +9,11 @@ export const routes = [
     path: '/',
     name: 'Home',
     component: Home,
-    meta: { auth: true }
   },
   {
     path: '/profile/:id',
     name: 'Profile',
     component: Profile,
-    meta: { auth: true },
   }, 
   {
     path: '/login',

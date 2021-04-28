@@ -4,16 +4,14 @@ export default {
   namespaced: true,
   state () {
     return {
-      userId: null,
-      loggedIn: false
+      loggedIn: false, 
+      user: null
     }
   },
   mutations: {
     setUser (state, payload) {
-      state.userId = payload.userId
+      state.user = payload.user
       state.loggedIn = payload.loggedIn
-
-      
     }
   },
 
@@ -22,7 +20,7 @@ export default {
       axios.get(`http://localhost:3000/users?${payload.query}`)
       .then( response => {
         context.commit('setUser', {
-          userId: response.data[0].id,
+          user: response.data[0],
           loggedIn: true
         })
         context.dispatch('saveUser', response.data[0].id)
@@ -39,7 +37,7 @@ export default {
       })
       .then( response => {
         context.commit('setUser', {
-          userId: response.data.id,
+          user: response.data,
           loggedIn: true
         })
         context.dispatch('saveUser', response.data.id)
@@ -57,7 +55,7 @@ export default {
       axios.get(`http://localhost:3000/users/${id}`)
       .then( response => {
         context.commit('setUser', {
-          userId: response.data.id,
+          user: response.data,
           loggedIn: true
         })
         context.dispatch('saveUser', response.data.id)
@@ -65,12 +63,20 @@ export default {
       .catch ( error => {
         console.log(error)
       })
+    },
+
+    logoutUser (context) {
+      localStorage.removeItem('loggedUser')
+      context.commit('setUser', {
+        user: null,
+        loggedIn: false
+      })
     }
   },
 
   getters: {
     loggedUser (state) {
-      return state.loggedIn
+      return state.user
     }
   }
 }
