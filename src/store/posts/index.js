@@ -38,6 +38,20 @@ export default {
       })
     },
 
+    getPostsById (context, id) {
+      let params = new URLSearchParams()
+      params.append('userId', id)
+      params.append('_sort', 'id')
+      params.append('_order', 'desc')
+      axios.get(`http://localhost:3000/posts?${params}`)
+      .then( response => {
+        context.commit('setPosts', response.data)
+      })
+      .catch ( error => {
+        console.log(error)
+      })
+    },
+
     createPost (context, payload) {
       axios.post(`http://localhost:3000/posts`, {
         userId: payload.userId,

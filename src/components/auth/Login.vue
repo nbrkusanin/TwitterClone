@@ -15,6 +15,7 @@
           <div class="flex items-center">
             <input v-model="password" type='password' placeholder="Password" class="px-3 w-full border rounded py-2 text-gray-700 focus:outline-none" />
           </div>
+          <p class="text-red-500" v-if="errorMessage !== ''">{{ errorMessage }}</p>
         </div>
         <p v-if="!formIsValid" class="text-red-500 mb-4 text-center">Please enter a valid email and password (must be at least 6 characters long).</p>
         <button @click="login()" class="w-full py-2 rounded-full bg-green-500 text-gray-100  focus:outline-none">Login</button>
@@ -29,7 +30,8 @@ export default {
     return {
       email: '',
       password: '',
-      formIsValid: true
+      formIsValid: true,
+      errorMessage: null
     }
   },
 

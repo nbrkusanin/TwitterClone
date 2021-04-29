@@ -65,13 +65,6 @@
     },
     {
       "userId": 23,
-      "title": "nikola ",
-      "author": "nikola11@gmail.com",
-      "post": "brkusanin test",
-      "id": 16
-    },
-    {
-      "userId": 23,
       "title": "nikola Brkusanin",
       "author": "nikola11@gmail.com",
       "post": "sdfasdfasdfsadfasdfsadfasdf",
@@ -92,14 +85,94 @@
       "post": "sdgfdfgsdfgsdf"
     },
     {
-      "id": 20,
+      "userId": 21,
+      "title": "Post from another user",
+      "author": "nikola30@gmail.com",
+      "post": "asdfsdfasdf sdf asdfasdf asdfasdf sadf asdf asdfsd",
+      "id": 20
+    },
+    {
       "userId": 23,
+      "title": "Tono test",
       "author": "nikola11@gmail.com",
-      "title": "fasdfasdfasdf",
-      "post": "asdfasdfasdfsad"
+      "post": "sdfasdfsf dfasdfasd fasd",
+      "id": 21
     }
   ],
-  "comments": [],
+  "comments": [
+    {
+      "id": 1,
+      "userId": 23,
+      "authorId": 23,
+      "postId": 19,
+      "author": "nikola11@gmail.com",
+      "comment": "sdgfdfgsdfgsdf f"
+    },
+    {
+      "userId": 23,
+      "authorId": 23,
+      "postId": 18,
+      "author": "nikola11@gmail.com",
+      "comment": "bla bla bla",
+      "id": 3
+    },
+    {
+      "userId": 23,
+      "authorId": 21,
+      "postId": 19,
+      "author": "nikola30@gmail.com",
+      "comment": "sadfasdf asdfasdfasdfsadf",
+      "id": 4
+    },
+    {
+      "userId": 21,
+      "authorId": 21,
+      "postId": 20,
+      "author": "nikola30@gmail.com",
+      "comment": "my comment",
+      "id": 5
+    },
+    {
+      "userId": 21,
+      "authorId": 23,
+      "postId": 20,
+      "author": "nikola11@gmail.com",
+      "comment": "testing another users comment",
+      "id": 6
+    },
+    {
+      "userId": 23,
+      "authorId": 23,
+      "postId": 19,
+      "author": "nikola11@gmail.com",
+      "comment": "test",
+      "id": 7
+    },
+    {
+      "userId": 23,
+      "authorId": 23,
+      "postId": 19,
+      "author": "nikola11@gmail.com",
+      "comment": "dfsdfasdfasdf",
+      "id": 8
+    },
+    {
+      "userId": 23,
+      "authorId": 23,
+      "postId": 21,
+      "author": "nikola11@gmail.com",
+      "comment": "sdfsdfasdfsdfs",
+      "id": 9
+    },
+    {
+      "userId": 21,
+      "authorId": 23,
+      "postId": 20,
+      "author": "nikola11@gmail.com",
+      "comment": "nikola",
+      "id": 10
+    }
+  ],
   "profile": {
     "name": "typicode"
   },
