@@ -69,13 +69,15 @@
       }
     },
 
-    mounted () {
+    created () {
       loggedIn()
     },
 
     watch: {
       search (value) {
-        value === '' ? this.showSearchDropdown = false : null
+        if(!value) {
+          this.showSearchDropdown = false
+        }
       }
     },
 
@@ -100,8 +102,10 @@
       },
 
       searchUsers () {
-        this.$store.dispatch('authModule/getUserByName', this.search)
-        this.showSearchDropdown = true
+        if(this.search?.length > 2) {
+          this.$store.dispatch('authModule/getUserByName', this.search)
+          this.showSearchDropdown = true
+        }
       },
 
       selectUser () {
@@ -110,9 +114,10 @@
       },
 
       debounceSearch() {
+        clearTimeout(this.debounce)
         this.debounce = setTimeout(() => {
           this.searchUsers()
-        }, 2000);
+        }, 500);
       },
 
     }

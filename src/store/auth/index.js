@@ -13,11 +13,11 @@ export default {
   mutations: {
     setUser (state, payload) {
       state.user = payload.user
-      state.loggedIn = payload.loggedIn
+      state.loggedIn = !!payload.user
     },
 
     setUsersProfile (state, payload) {
-      state.usersProfile = payload.usersProfile
+      state.usersProfile = payload
     },
 
     setSearchUsers (state, payload) {
@@ -26,82 +26,76 @@ export default {
   },
 
   actions: {
-    login (context, payload) {
-      axios.get(`http://localhost:3000/users?${payload.query}`)
-      .then( response => {
-        context.commit('setUser', {
-          user: response.data[0],
-          loggedIn: true
-        })
-        context.dispatch('saveUser', response.data[0].id)
-      })
-      .catch ( (error) => {
-        console.log(error)
-      })
+     async login ({ commit, dispatch },payload) {
+        try {
+          const res = await axios.get(`/users?${payload.query}`)
+          commit('setUser', {
+            user: res.data[0]
+          })
+          dispatch('saveUser', res.data[0].id)
+          return res.data
+        } catch (error) {
+          return Promise.reject(error)
+        }
     },
 
-    register (context, payload) {
-      axios.post('http://localhost:3000/users', {
-          email: payload.email,
-          password: payload.password
-      })
-      .then( response => {
-        context.commit('setUser', {
-          user: response.data,
-          loggedIn: true
+    async register ({commit, dispatch}, payload) {
+      try {
+        const res = await axios.post('/users', payload)
+        commit('setUser', {
+          user: res.data
         })
-        context.dispatch('saveUser', response.data.id)
-      })
-      .catch ( error => {
-        console.log(error)
-      })
+        dispatch('saveUser', res.data.id)
+        return res.data
+      } catch (error) {
+        return Promise.reject(error)
+      }
     },
 
     saveUser (_, id) {
       localStorage.setItem('loggedUser', id)
     },
 
-    getUserById (context, id) {
-      axios.get(`http://localhost:3000/users/${id}`)
-      .then( response => {
-        context.commit('setUser', {
-          user: response.data,
+    async getUserById ({commit, dispatch}, id) {
+      try {
+        const res = await axios.get(`/users/${id}`)
+        commit('setUser', {
+          user: res.data,
           loggedIn: true
         })
-        context.dispatch('saveUser', response.data.id)
-      })
-      .catch ( error => {
-        console.log(error)
-      })
+        dispatch('saveUser', res.data.id)
+        return res.data
+      } catch (error) {
+        return Promise.reject(error)
+      }
     },
 
-    getUserByName (context, payload) {
+    async getUserByName ({commit}, payload) {
       let params = new URLSearchParams()
+      params.append('_limit', '5')
       params.append('email_like', payload)
-      axios.get(`http://localhost:3000/users?${params}`)
-      .then( response => {
-        context.commit('setSearchUsers',  response.data)
-      })
-      .catch ( error => {
-        console.log(error)
-      })
+      try {
+        const res = await axios.get(`/users?${params}`)
+        commit('setSearchUsers',  res.data)
+        return res
+      } catch (error) {
+        return Promise.reject(error)
+      }
     },
 
-    getUsersProfile (context, id) {
-      axios.get(`http://localhost:3000/users/${id}`)
-      .then( response => {
-        context.commit('setUsersProfile', {
-          usersProfile: response.data
-        })
-      })
-      .catch ( error => {
-        console.log(error)
-      })
+    async getUsersProfile ({commit}, id) {
+      try {
+        const res = await axios.get(`/users/${id}`)
+        commit('setUsersProfile', res.data)
+        return res.data
+      } catch (error) {
+        return Promise.reject(error)
+      }
     },
 
-    logoutUser (context) {
+    logoutUser ({commit}) {
       localStorage.removeItem('loggedUser')
-      context.commit('setUser', {
+      commit('setUser', {
         user: null,
         loggedIn: false
       })

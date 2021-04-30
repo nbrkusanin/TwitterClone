@@ -1,0 +1,16 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.auth-page {
+  height: calc(100vh - 90px);
+}
+
+.center-section {
+  height: calc(100% - 90px);
+  overflow-y: auto;
+}
+
+.auth-input {
+  @apply px-3 w-full border rounded py-2 text-gray-700 focus:outline-none;
+}

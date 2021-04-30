@@ -5,7 +5,6 @@ export default {
   state () {
     return {
       posts: [], 
-      post: null
     }
   },
   mutations: {
@@ -18,73 +17,64 @@ export default {
     },
 
     deletePost (state, id) {
-      state.posts = state.posts.filter(post => {
-        return post.id !== id
-      })
+      const index = state.posts.findIndex(post => post.id === id)
+      state.posts.splice(index, 1)
     }
   },
 
   actions: {
-    getPosts (context) {
+    async getPosts ({ commit }) {
       let params = new URLSearchParams()
       params.append('_sort', 'id')
       params.append('_order', 'desc')
-      axios.get(`http://localhost:3000/posts?${params}`)
-      .then( response => {
-        context.commit('setPosts', response.data)
-      })
-      .catch ( error => {
-        console.log(error)
-      })
+      try {
+        const res = await axios.get(`/posts?${params}`)
+        commit('setPosts', res.data)
+        return res
+      } catch (error) {
+        return Promise.reject(error)
+      }
     },
 
-    getPostsById (context, id) {
+    async getPostsById ({ commit }, id) {
       let params = new URLSearchParams()
       params.append('userId', id)
       params.append('_sort', 'id')
       params.append('_order', 'desc')
-      axios.get(`http://localhost:3000/posts?${params}`)
-      .then( response => {
-        context.commit('setPosts', response.data)
-      })
-      .catch ( error => {
-        console.log(error)
-      })
+      try {
+        const res = await axios.get(`/posts?${params}`)
+        commit('setPosts', res.data)
+        return res
+      } catch (error) {
+        return Promise.reject(error)
+      }
     },
 
-    createPost (context, payload) {
-      axios.post(`http://localhost:3000/posts`, {
-        userId: payload.userId,
-        title: payload.title,
-        author: payload.author,
-        post: payload.post
-      })
-      .then( response => {
-        context.commit('addPost', response.data)
-      })
-      .catch ( error => {
-        console.log(error)
-      })
+    async createPost ({ commit }, payload) {
+      try {
+        const res = await axios.post(`/posts`, payload)
+        commit('addPost', res.data)
+      } catch (error) {
+        return Promise.reject(error)
+      }
     },
 
-    deletePost (context, id) {
-      axios.delete(`http://localhost:3000/posts/${id}`)
-      .then( () => {
-        context.commit('deletePost', id)
-      })
-      .catch ( error => {
-        console.log(error)
-      })
+    async deletePost ({ commit }, id) {
+      try {
+        await axios.delete(`/posts/${id}`)
+        commit('deletePost', id)
+      } catch (error) {
+        return Promise.reject(error)
+      }
     },
 
-    editPost (context, payload) {
-      axios.put(`http://localhost:3000/posts/${payload.id}`, payload)
-      .then( () => {
-        context.dispatch('getPosts')
-      })
-      .catch ( error => {
-        console.log(error)
-      })
+    async editPost ({ dispatch }, payload) {
+      try {
+        await axios.put(`/posts/${payload.id}`, payload)
+        dispatch('getPosts')
+      } catch (error) {
+        return Promise.reject(error)
+      }
     }
   },
 

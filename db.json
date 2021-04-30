@@ -22,69 +22,6 @@
       "id": 6
     },
     {
-      "id": 7,
-      "userId": 23,
-      "author": "nikola11@gmail.com",
-      "title": "Nikola Post",
-      "post": "sadfasdfasf asdfasdfasd  asdfsdfsdfsdfasdf"
-    },
-    {
-      "userId": 23,
-      "title": "Something new",
-      "author": "nikola11@gmail.com",
-      "post": "this is new post",
-      "id": 8
-    },
-    {
-      "userId": 23,
-      "title": "testing posts",
-      "author": "nikola11@gmail.com",
-      "post": "New testing posts",
-      "id": 12
-    },
-    {
-      "userId": 23,
-      "title": "new ",
-      "author": "nikola11@gmail.com",
-      "post": "nsdfsdfsdfsdf",
-      "id": 13
-    },
-    {
-      "userId": 23,
-      "title": "asdfsadf",
-      "author": "nikola11@gmail.com",
-      "post": "asdfasfs",
-      "id": 14
-    },
-    {
-      "userId": 23,
-      "title": "nikola",
-      "author": "nikola11@gmail.com",
-      "post": "brkusanin",
-      "id": 15
-    },
-    {
-      "userId": 23,
-      "title": "nikola Brkusanin",
-      "author": "nikola11@gmail.com",
-      "post": "sdfasdfasdfsadfasdfsadfasdf",
-      "id": 17
-    },
-    {
-      "userId": 23,
-      "title": "nikola testin",
-      "author": "nikola11@gmail.com",
-      "post": "ninasdfsdfasdfasdf df asdf asdfasd ",
-      "id": 18
-    },
-    {
-      "id": 19,
-      "userId": 23,
-      "author": "nikola11@gmail.com",
-      "title": "sdgsdfgsdfg",
-      "post": "sdgfdfgsdfgsdf"
-    },
-    {
       "userId": 21,
       "title": "Post from another user",
       "author": "nikola30@gmail.com",
@@ -92,38 +29,20 @@
       "id": 20
     },
     {
-      "userId": 23,
-      "title": "Tono test",
-      "author": "nikola11@gmail.com",
-      "post": "sdfasdfsf dfasdfasd fasd",
-      "id": 21
+      "userId": 25,
+      "title": "asdfsdf",
+      "post": "sdfasdfsadf",
+      "id": 23
+    },
+    {
+      "userId": 27,
+      "author": "nikola12@gmail.com",
+      "title": "sadfasdf",
+      "post": "sdfasdfasd",
+      "id": 24
     }
   ],
   "comments": [
-    {
-      "id": 1,
-      "userId": 23,
-      "authorId": 23,
-      "postId": 19,
-      "author": "nikola11@gmail.com",
-      "comment": "sdgfdfgsdfgsdf f"
-    },
-    {
-      "userId": 23,
-      "authorId": 23,
-      "postId": 18,
-      "author": "nikola11@gmail.com",
-      "comment": "bla bla bla",
-      "id": 3
-    },
-    {
-      "userId": 23,
-      "authorId": 21,
-      "postId": 19,
-      "author": "nikola30@gmail.com",
-      "comment": "sadfasdf asdfasdfasdfsadf",
-      "id": 4
-    },
     {
       "userId": 21,
       "authorId": 21,
@@ -133,44 +52,36 @@
       "id": 5
     },
     {
-      "userId": 21,
-      "authorId": 23,
-      "postId": 20,
-      "author": "nikola11@gmail.com",
-      "comment": "testing another users comment",
-      "id": 6
+      "userId": 25,
+      "authorId": 27,
+      "postId": 23,
+      "author": "nikola12@gmail.com",
+      "comment": "asdfsdfsadfasdf",
+      "id": 11
     },
     {
-      "userId": 23,
-      "authorId": 23,
-      "postId": 19,
-      "author": "nikola11@gmail.com",
-      "comment": "test",
-      "id": 7
+      "id": 12,
+      "userId": 27,
+      "authorId": 28,
+      "postId": 24,
+      "author": "nikola99@gmail.com",
+      "comment": "asdfasdfasdfs sdf sdfasdf "
     },
     {
-      "userId": 23,
+      "id": 13,
+      "userId": 25,
       "authorId": 23,
-      "postId": 19,
+      "postId": 23,
       "author": "nikola11@gmail.com",
-      "comment": "dfsdfasdfasdf",
-      "id": 8
+      "comment": "sfasdfsdaf sdfasdfasd fasdfasdf"
     },
     {
-      "userId": 23,
+      "userId": 27,
       "authorId": 23,
-      "postId": 21,
+      "postId": 24,
       "author": "nikola11@gmail.com",
-      "comment": "sdfsdfasdfsdfs",
-      "id": 9
-    },
-    {
-      "userId": 21,
-      "authorId": 23,
-      "postId": 20,
-      "author": "nikola11@gmail.com",
-      "comment": "nikola",
-      "id": 10
+      "comment": "asdfasdfasdf",
+      "id": 14
     }
   ],
   "profile": {
@@ -281,6 +192,35 @@
       "email": "nikola11@gmail.com",
       "password": "123456",
       "id": 24
+    },
+    {
+      "payload": {
+        "email": "nikola12@gmail.com",
+        "password": "123456"
+      },
+      "id": 25
+    },
+    {
+      "payload": {
+        "email": "nikola12@gmail.com",
+        "password": "123456"
+      },
+      "id": 26
+    },
+    {
+      "email": "nikola12@gmail.com",
+      "password": "123456",
+      "id": 27
+    },
+    {
+      "email": "nikola99@gmail.com",
+      "password": "123456",
+      "id": 28
+    },
+    {
+      "email": "testingReg@gmail.com",
+      "password": "123456",
+      "id": 29
     }
   ]
 }

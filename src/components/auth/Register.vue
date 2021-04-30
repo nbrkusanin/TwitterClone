@@ -7,16 +7,20 @@
       <h2 class="text-3xl text-center text-gray-700 mb-4">Register</h2>
       <div class="px-12 pb-10">
         <div class="w-full mb-5">
+          <p class="text-red-500 text-center">{{ errorMessage }}</p>
           <div class="flex items-center">
-            <input v-model="email" type='text' placeholder="Username" class="px-3 w-full border rounded py-2 text-gray-700 focus:outline-none" />
+            <input v-model="email" type='text' placeholder="Username" class="auth-input" />
           </div>
+          <p v-if="$v.email.$dirty && !$v.email.required" class="text-red-500">Required</p>
+          <p v-if="$v.email.$dirty && !$v.email.email" class="text-red-500">Not valid email address.</p>
         </div>
         <div class="w-full mb-4">
           <div class="flex items-center">
-            <input v-model="password" type='password' placeholder="Password" class="px-3 w-full border rounded py-2 text-gray-700 focus:outline-none" />
+            <input v-model="password" type='password' placeholder="Password" class="auth-input" />
           </div>
+          <p v-if="$v.password.$dirty && !$v.password.required" class="text-red-500">Required</p>
+          <p v-if="$v.password.$dirty && !$v.password.minLength" class="text-red-500">Password must have at least {{ $v.password.$params.minLength.min }} characters.</p>
         </div>
-        <p v-if="!formIsValid" class="text-red-500 mb-4 text-center">Please enter a valid email and password (must be at least 6 characters long).</p>
         <button @click="register()" class="w-full py-2 rounded-full bg-green-500 text-gray-100  focus:outline-none">Register</button>
       </div>
     </form>
@@ -24,20 +28,23 @@
 </template>
 
 <script>
+import { required, minLength, email } from 'vuelidate/lib/validators'
+
 export default {
   data () {
     return {
       email: '',
       password: '',
-      formIsValid: true
+      errorMessage: ''
     }
   },
 
   methods: {
     async register () {
-      if(this.email === '' || !this.email.includes('@') || this.password.length < 6) {
-        this.formIsValid = false
-        return
+      this.$v.$touch()
+
+      if (this.$v.$invalid) {
+          return
       }
 
       const loader = this.$loading.show()
@@ -46,19 +53,21 @@ export default {
           email: this.email,
           password: this.password
         })
-        this.$router.replace({ path: `/` })
+        this.$router.replace({ path: '/' })
       } catch (e) {
-        console.log(e)
+        this.errorMessage = e.message
       } finally {
         loader.hide()
       }
     }
+  },
+
+  validations: {
+    email: { required, email },
+    password: { 
+      required, 
+      minLength: minLength(6) 
+    }
   }
 }
 </script>
-
-<style>
-  .errorMsg {
-    color: red;
-  }
-</style>

@@ -28,6 +28,6 @@ export const routes = [
   {
     path: '*',
     name: 'default',
-    redirect: { name: 'Login' }
+    redirect: { name: 'Home' }
   }
 ]

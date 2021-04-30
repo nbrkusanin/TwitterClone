@@ -1,80 +1,69 @@
 import axios from 'axios'
+import Vue from 'vue'
 
 export default {
   namespaced: true,
   state () {
     return {
-      comments: [], 
-      comment: null
+      comments: {}, 
     }
   },
   mutations: {
-    setComments (state, payload) {
-      state.comments = payload
+    setComments (state, {id, data}) {
+      Vue.set(state.comments, id, data)
     },
 
-    deleteComment (state, id) {
-      state.comments = state.comments.filter(comment => {
-        return comment.id !== id
-      })
+    deleteComment (state, payload) {
+      console.log(state, payload)
+      const index = state.comments[payload.postId].findIndex(post => post.id === payload.id)
+      state.comments[payload.postId].splice(index, 1)
     }
   },
 
   actions: {
-    getCommentsByPost (context, id) {
+    async getCommentsByPost ({ commit }, id) {
       let params = new URLSearchParams()
       params.append('postId', id)
       params.append('_sort', 'id')
       params.append('_order', 'desc')
-      axios.get(`http://localhost:3000/comments?${params}`)
-      .then( response => {
-        context.commit('setComments', response.data)
-      })
-      .catch ( error => {
-        console.log(error)
-      })
+      try {
+        const res = await axios.get(`/comments?${params}`)
+        commit('setComments', {id, data: res.data})
+        return res
+      } catch (error) {
+        return Promise.reject(error)
+      }
     },
 
-    createComment (context, payload) {
-      axios.post(`http://localhost:3000/comments`, {
-        userId: payload.userId,
-        authorId: payload.authorId,
-        postId: payload.postId,
-        author: payload.author,
-        comment: payload.comment
-      })
-      .then( () => {
-        context.dispatch('getCommentsByPost', payload.postId)
-      })
-      .catch ( error => {
-        console.log(error)
-      })
+    async createComment ({ dispatch }, payload) {
+      try {
+        await axios.post(`/comments`, payload)
+        dispatch('getCommentsByPost', payload.postId)
+      } catch (error) {
+        return Promise.reject(error)
+      }
     },
 
-    deleteComment (context, id) {
-      axios.delete(`http://localhost:3000/comments/${id}`)
-      .then( () => {
-        context.commit('deleteComment', id)
-      })
-      .catch ( error => {
-        console.log(error)
-      })
+    async deleteComment ({ commit }, payload) {
+      try {
+        await axios.delete(`/comments/${payload.id}`)
+        commit('deleteComment', payload)
+      } catch (error) {
+        return Promise.reject(error)
+      }
     },
 
-    editComment (context, payload) {
-      axios.put(`http://localhost:3000/comments/${payload.id}`, payload)
-      .then( () => {
-        context.dispatch('getCommentsByPost', payload.postId)
-      })
-      .catch ( error => {
-        console.log(error)
-      })
+    async editComment ({ dispatch }, payload) {
+      try {
+        await axios.put(`/comments/${payload.id}`, payload)
+        dispatch('getCommentsByPost', payload.postId)
+      } catch (error) {
+        return Promise.reject(error)
+      }
     }
   },
 
   getters: {
-    comments (state) {
-      return state.comments
-    }
+    comments: (state) => (id) => state.comments[id]
   }
 }
