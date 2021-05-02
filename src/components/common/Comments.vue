@@ -6,6 +6,7 @@
           Comment
         </button>
     </div>
+    <p v-if="$v.comment.$dirty && !$v.comment.required" class="text-red-500 mb-1 ml-2">Required</p>
     
     <div v-for="comment in comments" :key="comment.id" class="mt-3">
       <router-link :to="{ path: `profile/${comment.authorId}`}" class="text-green-400 text-sm hover:underline">{{ comment.author }}</router-link>
@@ -18,7 +19,7 @@
 
     <confirm-modal
       v-if="editModal"
-      text="Edit Post"
+      text="Edit Comment"
       button-text="Edit"
       @confirm="updateComment()"
       @close="editModal = false">
@@ -91,10 +92,10 @@ export default {
     },
 
     async saveComment () {
-      this.$v.$touch()
+      this.$v.comment.$touch()
 
       if (this.$v.comment.$invalid) {
-          return
+        return
       }
 
       const payload = {
@@ -133,7 +134,7 @@ export default {
     },
 
     async updateComment () {
-      this.$v.$touch()
+      this.$v.editComment.$touch()
 
       if (this.$v.editComment.$invalid) {
           return

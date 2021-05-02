@@ -82,6 +82,30 @@
       "author": "nikola11@gmail.com",
       "comment": "asdfasdfasdf",
       "id": 14
+    },
+    {
+      "userId": 27,
+      "authorId": 23,
+      "postId": 24,
+      "author": "nikola11@gmail.com",
+      "comment": "sdfsdfsdfsdaf",
+      "id": 15
+    },
+    {
+      "userId": 27,
+      "authorId": 23,
+      "postId": 24,
+      "author": "nikola11@gmail.com",
+      "comment": "ssdfsdfsdaf",
+      "id": 16
+    },
+    {
+      "userId": 27,
+      "authorId": 23,
+      "postId": 24,
+      "author": "nikola11@gmail.com",
+      "comment": "sdgdfgsdf",
+      "id": 17
     }
   ],
   "profile": {
